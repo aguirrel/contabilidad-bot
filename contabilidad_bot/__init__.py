@@ -33,20 +33,8 @@ def error_callback(bot, update, error):
 
 dispatcher.add_error_handler(error_callback)
 
-
-
-
-
-
-
-
-
-
-
-
-
 logging.info("Importando comandos:")
-from contabilidad_bot.comandos import efectivo
+from contabilidad_bot.comandos import efectivo, eliminar
 
 logging.info("Esperando mensajes...")
 updater.start_polling()
