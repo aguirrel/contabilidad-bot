@@ -11,13 +11,13 @@ def get_collection(chat_id, collection):
 
 
 def listar_collection(collection, comando,
-                      sort=["creacion", pymongo.ASCENDING],
+                      sort=["creacion", pymongo.DESCENDING],
                       limit=10, skip=0):
     button_list = []
     objects = collection.find().sort(*sort).skip(skip).limit(limit)
     for o in objects:
         texto = formats[collection.name](o)
-        callback_data = comando + str(o['_id'])
+        callback_data = comando + ' ' + str(o['_id'])
         button_list.append(
             [InlineKeyboardButton(texto,
                                   callback_data=callback_data)])
