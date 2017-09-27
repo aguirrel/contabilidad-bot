@@ -43,9 +43,7 @@ def efectivo(bot, update, args):
         resultado['importe'] = float(resultado['importe'])
         collection = dbmongo.get_collection(update.message.chat_id, 'gastos')
         collection.insert_one(resultado)
-        ret_txt = 'Cobro contabilizado: ' + resultado['descripcion'] + \
-                  '\nimporte: ' + resultado['importe'] + \
-                  '\ntags: ' + ' '.join(resultado['tags'])
+        ret_txt = dbmongo.format_gasto(resultado)
     else:
         ret_txt = '''/efectivo - Agrega un gasto en efectivo,
         el formato es: descripción importe tags (con # adelante),
